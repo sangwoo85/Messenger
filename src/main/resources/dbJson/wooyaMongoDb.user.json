@@ -1,0 +1,80 @@
+[{
+  "_id": {
+    "$oid": "67bc7f85c571ae5567e9f405"
+  },
+  "userId": "ksswy1",
+  "name": "ss",
+  "dept": "ss",
+  "position": "ss",
+  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+},
+{
+  "_id": {
+    "$oid": "67bc7f90c571ae5567e9f406"
+  },
+  "userId": "ksswy1",
+  "name": "ss",
+  "dept": "ss",
+  "position": "ss",
+  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+},
+{
+  "_id": {
+    "$oid": "67bc7fac550e026db1456521"
+  },
+  "userId": "ksswy1",
+  "name": "ss",
+  "dept": "ss",
+  "position": "ss",
+  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+},
+{
+  "_id": {
+    "$oid": "67bc7fe9fce9575b124d978c"
+  },
+  "userId": "ksswy1",
+  "name": "ss",
+  "dept": "ss",
+  "position": "ss",
+  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+},
+{
+  "_id": {
+    "$oid": "67bc7febfce9575b124d978d"
+  },
+  "userId": "ksswy1",
+  "name": "ss",
+  "dept": "ss",
+  "position": "ss",
+  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+},
+{
+  "_id": {
+    "$oid": "67bc7fecfce9575b124d978e"
+  },
+  "userId": "ksswy1",
+  "name": "ss",
+  "dept": "ss",
+  "position": "ss",
+  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+},
+{
+  "_id": {
+    "$oid": "67bc7ff6fce9575b124d978f"
+  },
+  "userId": "ksswy1",
+  "name": "ss",
+  "dept": "ss",
+  "position": "ss",
+  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+},
+{
+  "_id": {
+    "$oid": "67bc803bcc6802131a166ad5"
+  },
+  "userId": "ksswy1",
+  "name": "ss",
+  "dept": "ss",
+  "position": "ss",
+  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+}]
