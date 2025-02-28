@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import "./Messenger.css";
+import UserLayout from "../user/UserLayout";
 
 var chatListData = [
   {
@@ -55,23 +56,22 @@ const initialMessages = [
   },
 ];
 
-const userList = [];
 export default function DesktopMessenger() {
   const [selectedChat, setSelectedChat] = useState(chatListData[1]); // 기본 선택: "Designers"
   const [messages, setMessages] = useState(initialMessages);
   const [inputText, setInputText] = useState("");
   const [stompClient, setStompClient] = useState(null);
   const [selectMenu, setSelectMenu] = useState(null);
-  const [chatListData1, setChatListData] = useState([]);
 
 
+  const server_url  = window.location.protocol +"//"+ window.location.hostname+":8090"
   useEffect(()=>{
-    const socket = new SockJS("http://localhost:8090/ws")
+    const socket = new SockJS( server_url+":8090/ws")
     const client = new Client({
       webSocketFactory: () => socket,
       connectHeaders :{userId: "ksswy"},
       onConnect: () =>{
-        console.log("Connect to WEbsocket");
+        console.log("Connect to webSocket");
 /*
         client.subscribe("/topic/public",(message) => {
           const receiveMessage = JSON.parse(message.body);
@@ -94,19 +94,6 @@ export default function DesktopMessenger() {
     return () => client.deactivate(); // 컴포넌트 언마운트 시 연결 해제
   },[]);
 
-  // useEffect에서 axios를 사용하여 사용자 목록을 가져옴
-  useEffect(() => {
-    // 실제 API 엔드포인트 URL로 변경하세요.
-    axios.post("http://localhost:8090/getUserList",{userId:"ksswy"})
-      .then((response) => {
-        console.log(response);
-        // response.data가 사용자 목록 배열이라고 가정합니다.
-        setChatListData(response.data);
-      })
-      .catch((error) => {
-        console.error("사용자 목록을 가져오는 중 오류 발생: ", error);
-      });
-  }, []);
 
   const handleSendMessage = () => {
     console.log("send btn click");
@@ -158,26 +145,7 @@ export default function DesktopMessenger() {
         <input className="search-box" placeholder="Search" />
 
         {(selectMenu  ===  "userList"  || !selectMenu)&& (
-          <>
-            <div className="chat-list">
-            {userList.map((chat, idx) => (
-                <div
-                  key={idx}
-                  className="chat-item"
-                  onClick={() => handleSelectChat(chat)}
-                >
-                  <div className="chat-avatar">
-                    {chat.name.charAt(0)}
-                  </div>
-                  <div className="chat-info">
-                    <div className="chat-name">{chat.name}</div>
-                    <div className="chat-last-message">{chat.lastMessage}</div>
-                  </div>
-                  <div className="chat-time">{chat.time}</div>
-                </div>
-              ))}
-          </div>
-          </>
+          <UserLayout/>
         )}
         {selectMenu === "chatList" && (
           <>
@@ -201,7 +169,6 @@ export default function DesktopMessenger() {
             </div>
           </>
         )}
-        
         
         
       </div>
