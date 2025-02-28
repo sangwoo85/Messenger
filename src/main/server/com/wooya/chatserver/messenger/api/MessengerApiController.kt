@@ -1,26 +1,17 @@
 package com.wooya.chatserver.messenger.api
 
-import com.wooya.chatserver.db.mongodb.domain.service.UserInfoService
-import com.wooya.chatserver.db.mongodb.domain.user.model.UserInfo
+import com.wooya.chatserver.db.mongodb.domain.service.UserService
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 /**
- * @Title message 보내는 Controller
+ * @Title
  * */
 @RestController
-class MessengerApiController(private val userInfoService: UserInfoService) {
+class MessengerApiController(private val userService: UserService) {
 
     private val LOGGER = LoggerFactory.getLogger(this::class.java);
-
-    @GetMapping("/getUserList")
-    fun testUserInfo() : List<UserInfo> {
-        LOGGER.info("START")
-        val userList =  userInfoService.findAll()
-        LOGGER.info(userList.toString());
-        return userList
-    }
 
     @GetMapping("/saveUser")
     fun saveUser() : String{

@@ -54,6 +54,8 @@ const initialMessages = [
     date: "9:54 PM",
   },
 ];
+
+const userList = [];
 export default function DesktopMessenger() {
   const [selectedChat, setSelectedChat] = useState(chatListData[1]); // 기본 선택: "Designers"
   const [messages, setMessages] = useState(initialMessages);
@@ -95,9 +97,9 @@ export default function DesktopMessenger() {
   // useEffect에서 axios를 사용하여 사용자 목록을 가져옴
   useEffect(() => {
     // 실제 API 엔드포인트 URL로 변경하세요.
-    axios
-      .get("http://localhost:8090/getUserList")
+    axios.post("http://localhost:8090/getUserList",{userId:"ksswy"})
       .then((response) => {
+        console.log(response);
         // response.data가 사용자 목록 배열이라고 가정합니다.
         setChatListData(response.data);
       })
@@ -158,7 +160,7 @@ export default function DesktopMessenger() {
         {(selectMenu  ===  "userList"  || !selectMenu)&& (
           <>
             <div className="chat-list">
-            {chatListData.map((chat, idx) => (
+            {userList.map((chat, idx) => (
                 <div
                   key={idx}
                   className="chat-item"

@@ -5,5 +5,6 @@ data class ChatMessage(
     val sender: String ="",
     val date : String ="",
     val type : String ="",
-    val receiver : String =""
+    val receiver : String ="",
+    val chatId : String =""
 )

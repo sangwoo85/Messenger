@@ -7,6 +7,11 @@ import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.stereotype.Controller
 import java.security.Principal
 
+/**
+ * @title 채팅 관련 메시지를 수신 하는 API contorller
+ *
+ *
+ * */
 @Controller
 class MessageApiController(private val messageTemplate: SimpMessagingTemplate) {
 
