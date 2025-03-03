@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import "./Messenger.css";
@@ -57,8 +56,8 @@ const initialMessages = [
 ];
 
 export default function DesktopMessenger() {
-  const [selectedChat, setSelectedChat] = useState(chatListData[1]); // 기본 선택: "Designers"
-  const [messages, setMessages] = useState(initialMessages);
+  const [selectedChat, setSelectedChat] = useState(null); // 초기 선택 없음
+  const [messages, setMessages] = useState([]); // 초기 메시지 없음
   const [inputText, setInputText] = useState("");
   const [stompClient, setStompClient] = useState(null);
   const [selectMenu, setSelectMenu] = useState(null);
@@ -66,7 +65,7 @@ export default function DesktopMessenger() {
 
   const server_url  = window.location.protocol +"//"+ window.location.hostname+":8090"
   useEffect(()=>{
-    const socket = new SockJS( server_url+":8090/ws")
+    const socket = new SockJS( server_url+"/ws")
     const client = new Client({
       webSocketFactory: () => socket,
       connectHeaders :{userId: "ksswy"},
@@ -115,8 +114,9 @@ export default function DesktopMessenger() {
     setInputText("");//초기화
   }
 
-  const handleMenuUserClick = () =>{
-    setSelectMenu("userList")
+  const handleMenuUserClick = () => {
+    setSelectMenu("userList");
+    setMessages([]); // 사용자 목록 클릭 시 메시지 목록 비우기
   }
 
   const handleMenuChatClick = () =>{
@@ -126,8 +126,9 @@ export default function DesktopMessenger() {
   // 사이드바에서 채팅 목록 클릭 시
   const handleSelectChat = (chat) => {
     setSelectedChat(chat);
-    // 실제로는 서버에서 해당 채팅에 대한 메시지를 불러오는 로직이 필요
-    setMessages(initialMessages);
+    // 서버에서 해당 채팅에 대한 메시지를 불러오는 로직 필요
+    // 예시: setMessages(fetchMessagesForChat(chat));
+    setMessages(initialMessages); // 임시로 초기 메시지 설정
   };
 
   return (

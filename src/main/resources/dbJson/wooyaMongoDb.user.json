@@ -1,80 +1,72 @@
 [{
-  "_id": {
-    "$oid": "67bc7f85c571ae5567e9f405"
-  },
-  "userId": "ksswy1",
-  "name": "ss",
-  "dept": "ss",
-  "position": "ss",
-  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+  "userId": "ksswy",
+  "name": "김상우",
+  "password": "1234",
+  "dept": "01",
+  "position": "01",
+  "comment": "나의 코멘트1",
+  "profileImg"  : "https://i.pravatar.cc/40?img=50"
 },
 {
-  "_id": {
-    "$oid": "67bc7f90c571ae5567e9f406"
-  },
   "userId": "ksswy2",
-  "name": "ss",
-  "dept": "ss",
-  "position": "ss",
-  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+  "name": "김상우의 테스트",
+  "password": "1234",
+  "dept": "01",
+  "position": "01",
+  "comment": "나의 코멘트22222222222222",
+  "profileImg"  : "https://i.pravatar.cc/40?img=2"
 },
 {
-  "_id": {
-    "$oid": "67bc7fac550e026db1456521"
-  },
   "userId": "ksswy3",
   "name": "ss",
-  "dept": "ss",
-  "position": "ss",
-  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+  "password": "1234",
+  "dept": "01",
+  "position": "02",
+  "comment": "나의 코멘트1",
+  "profileImg"  : "https://i.pravatar.cc/40?img=3"
 },
 {
-  "_id": {
-    "$oid": "67bc7fe9fce9575b124d978c"
-  },
   "userId": "ksswy4",
   "name": "ss",
-  "dept": "ss",
-  "position": "ss",
-  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+  "password": "1234",
+  "dept": "02",
+  "position": "02",
+  "comment": "나의 코멘트1",
+  "profileImg"  : "https://i.pravatar.cc/40?img=10"
 },
 {
-  "_id": {
-    "$oid": "67bc7febfce9575b124d978d"
-  },
   "userId": "ksswy5",
   "name": "ss",
-  "dept": "ss",
-  "position": "ss",
-  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+  "password": "1234",
+  "dept": "03",
+  "position": "02",
+  "comment": "나의 코멘트1",
+  "profileImg"  : "https://i.pravatar.cc/40?img=14"
 },
 {
-  "_id": {
-    "$oid": "67bc7fecfce9575b124d978e"
-  },
   "userId": "ksswy6",
   "name": "ss",
-  "dept": "ss",
-  "position": "ss",
-  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+  "password": "1234",
+  "dept": "04",
+  "position": "03",
+  "comment": "나의 코멘트1",
+  "profileImg"  : "https://i.pravatar.cc/40?img=7"
 },
 {
-  "_id": {
-    "$oid": "67bc7ff6fce9575b124d978f"
-  },
   "userId": "ksswy7",
   "name": "ss",
-  "dept": "ss",
-  "position": "ss",
-  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+  "password": "1234",
+  "dept": "05",
+  "position": "03",
+  "comment": "나의 코멘트1",
+  "profileImg"  : "https://i.pravatar.cc/40?img=8"
 },
 {
-  "_id": {
-    "$oid": "67bc803bcc6802131a166ad5"
-  },
   "userId": "ksswy8",
   "name": "ss",
-  "dept": "ss",
-  "position": "ss",
-  "_class": "com.wooya.chatserver.db.mongo.domain.user.model.UserInfo"
+  "password": "1234",
+  "dept": "06",
+  "position": "03",
+  "comment": "나의 코멘트1",
+  "profileImg"  : "https://i.pravatar.cc/40?img=16"
 }]

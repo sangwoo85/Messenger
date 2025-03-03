@@ -1,14 +1,14 @@
 package com.wooya.chatserver.config.common
 
 import jakarta.servlet.http.HttpServletRequest
-import jakarta.servlet.http.HttpSession
 import org.springframework.http.server.ServerHttpRequest
 import org.springframework.http.server.ServerHttpResponse
 import org.springframework.web.socket.WebSocketHandler
 import org.springframework.web.socket.server.HandshakeInterceptor
-import java.lang.Exception
+import java.util.*
 
 class UserInterceptor : HandshakeInterceptor {
+
     override fun beforeHandshake(
         request: ServerHttpRequest,
         response: ServerHttpResponse,
@@ -17,10 +17,11 @@ class UserInterceptor : HandshakeInterceptor {
     ): Boolean {
         if (request is org.springframework.http.server.ServletServerHttpRequest) {
             val servletRequest = request.servletRequest as HttpServletRequest
-            val session: HttpSession = servletRequest.session
-            session.setAttribute("userId","ksswy")
+            val session = servletRequest.session
+            //session.setAttribute("userId","ksswy")
             // HttpSession에서 userId 가져오기
-            val userId = session.getAttribute("userId") as? String ?: "ksswy"
+            println(session.attributeNames.toList())
+            val userId =  Optional.of(session.getAttribute("userId")).orElse("")
             attributes["userId"] = userId
         }
         return true

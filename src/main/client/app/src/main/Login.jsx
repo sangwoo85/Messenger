@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
-import axios from 'axios';
+import chatBasixAxios from '../common/ChatAxios';
+import { useNavigate } from "react-router-dom";
+
 
 export default function Login({ onLoginSuccess }) {
   const [formData, setFormData] = useState({
@@ -8,7 +10,7 @@ export default function Login({ onLoginSuccess }) {
     password: '',
     autoLogin: false
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -22,15 +24,12 @@ export default function Login({ onLoginSuccess }) {
     // TODO: 로그인 로직 구현
     console.log('로그인 시도:', formData);
 
-    axios.post('http://localhost:8090/login', {userId:"ksswy"}).then(response => {
-        console.log(response);
-        if(response.data === "success"){
-            onLoginSuccess();
-        }else{
-            alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-        }
+    chatBasixAxios.post('/login', {"userId":formData.userId,"password":formData.password}
+        ).then(response => {
+            //onLoginSuccess();
+            navigate("/messenger");
     }).catch(error => {
-        console.error('로그인 실패:', error);
+        console.log(error);
     });
     
 

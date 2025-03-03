@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
 import "./ChatList.css";
+import chatBasixAxios from '../common/ChatAxios';
 
 
 
@@ -75,7 +75,7 @@ export default function ChatList(){
   // useEffect에서 axios를 사용하여 사용자 목록을 가져옴
   useEffect(() => {
     // 실제 API 엔드포인트 URL로 변경하세요.
-    axios.post(server_url+"/getUserList",{userId:"ksswy"})
+    chatBasixAxios.post("/getUserList")
       .then((response) => {
         console.log(response);
         // response.data가 사용자 목록 배열이라고 가정합니다.

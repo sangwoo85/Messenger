@@ -7,6 +7,7 @@ import org.springframework.messaging.simp.config.MessageBrokerRegistry
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer
+import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor
 
 
 @Configuration
@@ -27,7 +28,7 @@ class StompConfig : WebSocketMessageBrokerConfigurer{
         registry.addEndpoint("/ws")
             .setAllowedOriginPatterns("*")
             .setHandshakeHandler(UserHandshakeHandler())
-            .addInterceptors(UserInterceptor())
+            .addInterceptors(HttpSessionHandshakeInterceptor() ,UserInterceptor())
             .withSockJS()
     }
 
