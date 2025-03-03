@@ -7,14 +7,7 @@ import chatBasixAxios from '../common/ChatAxios';
  * 
  * 
  */
-let myProfile = {comment: "나의 코멘트1",
-dept: null,
-id: null,
-name: "김상우",
-password: null,
-position: "직책1",
-profileImg: "https://i.pravatar.cc/40?img=50",
-userId:"ksswy"};
+
 export default function UserList(){
     const [openGroups, setOpenGroups] = useState({});
     const [usersData, setUsersData] = useState([]);
