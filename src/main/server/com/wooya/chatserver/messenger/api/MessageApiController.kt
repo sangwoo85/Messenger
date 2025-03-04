@@ -17,13 +17,19 @@ class MessageApiController(private val messageTemplate: SimpMessagingTemplate) {
 
     private final val LOGGER = LoggerFactory.getLogger(MessageApiController::class.java)
 
+    /**
+     * 1차  채팅방 마다 구독을 roomId로 구독 해서 채팅방의 사람들이 모두 구독하여 받을 수 있도록
+     *
+     * 2차
+     *
+     * */
     @MessageMapping("/private-message")
     fun sendPrivateMessage(message : ChatMessage, principal : Principal) {
         LOGGER.info("START");
-        val receiver = message.receiver;
+        val roomId = message.roomId;
         val name = principal.name;
-        LOGGER.info("sender $name to $receiver")
-        messageTemplate.convertAndSend("/queue/messages/$receiver",message)
+        LOGGER.info("sender $name to $roomId")
+        messageTemplate.convertAndSend("/queue/room/$roomId",message)
     }
 
 

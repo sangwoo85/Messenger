@@ -16,7 +16,7 @@ class StompConfig : WebSocketMessageBrokerConfigurer{
 
     override fun configureMessageBroker(registry: MessageBrokerRegistry) {
         // Broadcasting prefix
-        registry.enableSimpleBroker("/topic", "/queue")
+        registry.enableSimpleBroker("/topic", "/queue","/sendRoom")
 
         //클라이언트가 전송 메시지 prefix를 지정 (핸들러 수신)
         registry.setApplicationDestinationPrefixes("/app")

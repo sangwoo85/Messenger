@@ -3,6 +3,9 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import "./Messenger.css";
 import UserLayout from "../user/UserLayout";
+import { v4 as uuidv4 } from 'uuid';
+import { useUser } from "../context/UserContext";
+
 
 var chatListData = [
   {
@@ -63,6 +66,7 @@ export default function DesktopMessenger() {
   const [selectMenu, setSelectMenu] = useState(null);
 
 
+  console.log(useUser());
   const server_url  = window.location.protocol +"//"+ window.location.hostname+":8090"
   useEffect(()=>{
     const socket = new SockJS( server_url+"/ws")
@@ -77,7 +81,7 @@ export default function DesktopMessenger() {
           setMessages((prev) => [...prev, receiveMessage])
         })
           */
-        client.subscribe("/queue/messages/ksswy",(message) => {
+        client.subscribe("/queue/room/1234",(message) => {
           console.log("message reiceve");
           const receiveMessage = JSON.parse(message.body);
           console.log(receiveMessage);
@@ -99,10 +103,11 @@ export default function DesktopMessenger() {
     if(!inputText.trim() || !stompClient) return;
     const newMsg = {
       sender: "ksswy",
-      receiver : "ksswy",
-      message : inputText.trim(),
+      value : inputText.trim(),
       date : new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}),
-      type : "1"
+      type : "1",
+      roomId : "1234",
+      chatId: uuidv4()
     };
 
     stompClient.publish({
@@ -187,14 +192,14 @@ export default function DesktopMessenger() {
         {/* 메시지 목록 */}
         <div className="chat-messages">
           {messages.map((msg, idx) => {
-            const isMe = msg.sender === "You";
+            const isMe = msg.sender === "ksswy";
             return (
               <div
                 key={idx}
                 className={`message ${isMe ? "message-right" : "message-left"}`}
               >
                 <div className="message-content">
-                  <div>{msg.message}</div>
+                  <div>{msg.value}</div>
                   <div className="message-time">{msg.date}</div>
                 </div>
               </div>

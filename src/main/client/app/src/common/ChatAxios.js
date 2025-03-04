@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { BrowserRouter as Navigate } from "react-router-dom";
 
 const server_url = window.location.protocol +"//"+ window.location.hostname+":8090";
 const chatBasixAxios = axios.create({
@@ -24,11 +25,13 @@ chatBasixAxios.interceptors.request.use(
 chatBasixAxios.interceptors.response.use(
     (response) => {
         return response;
-    },
-    (error) => {
+    },(error) => {
         console.log(error);
 
-        if(error.response && error.response.data){
+        if(error.response?.status == 401){
+            alert("로그인 후 이용해주세요.");
+            Navigate("/login");
+        }else if(error.response && error.response.data){
             alert(error.response.data.message);
         }
         return Promise.reject(error);

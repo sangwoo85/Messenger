@@ -1,6 +1,6 @@
 const { execSync } = require("child_process");
 
-const packages = ["@stomp/stompjs", "sockjs-client","axios","react-router-dom"]; // 필요한 패키지 리스트
+const packages = ["@stomp/stompjs", "sockjs-client","axios","react-router-dom" ,"uuid"]; // 필요한 패키지 리스트
 
 packages.forEach((pkg) => {
   try {

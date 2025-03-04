@@ -1,6 +1,7 @@
 package com.wooya.chatserver.config.common
 
 import jakarta.servlet.http.HttpServletRequest
+import org.slf4j.LoggerFactory
 import org.springframework.http.server.ServerHttpRequest
 import org.springframework.http.server.ServerHttpResponse
 import org.springframework.web.socket.WebSocketHandler
@@ -8,6 +9,8 @@ import org.springframework.web.socket.server.HandshakeInterceptor
 import java.util.*
 
 class UserInterceptor : HandshakeInterceptor {
+
+    final val LOGGER = LoggerFactory.getLogger(UserInterceptor::class.java)
 
     override fun beforeHandshake(
         request: ServerHttpRequest,
@@ -20,9 +23,13 @@ class UserInterceptor : HandshakeInterceptor {
             val session = servletRequest.session
             //session.setAttribute("userId","ksswy")
             // HttpSession에서 userId 가져오기
-            println(session.attributeNames.toList())
-            val userId =  Optional.of(session.getAttribute("userId")).orElse("")
-            attributes["userId"] = userId
+            LOGGER.info(session.attributeNames.toList().toString())
+            try {
+                val userId = Optional.of(session.getAttribute("userId")).orElse("")
+                attributes["userId"] = userId
+            }catch(e : NullPointerException){
+                LOGGER.error("",e)
+            }
         }
         return true
     }

@@ -11,7 +11,7 @@ class LoginInterceptor : HandlerInterceptor {
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
         val session = request.getSession(true);
         if (session === null || session.getAttribute(("userId")) === null) {
-            response.sendRedirect("/login")
+            response.sendRedirect("/")
             return false;
         }
         return true;
