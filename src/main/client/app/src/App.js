@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Messenger from './main/Messenger';
 import Login from './main/Login';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { UserProvider } from './context/UserContext';
+import { UserProvider } from './common/UserContext';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 

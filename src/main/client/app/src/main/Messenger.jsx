@@ -3,8 +3,9 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import "./Messenger.css";
 import UserLayout from "../user/UserLayout";
-import { v4 as uuidv4 } from 'uuid';
-import { useUser } from "../context/UserContext";
+import ChatRoom from "../chat/ChatRoom";
+import { useUser } from "../common/UserContext";
+
 
 
 var chatListData = [
@@ -61,7 +62,6 @@ const initialMessages = [
 export default function DesktopMessenger() {
   const [selectedChat, setSelectedChat] = useState(null); // 초기 선택 없음
   const [messages, setMessages] = useState([]); // 초기 메시지 없음
-  const [inputText, setInputText] = useState("");
   const [stompClient, setStompClient] = useState(null);
   const [selectMenu, setSelectMenu] = useState(null);
 
@@ -75,12 +75,7 @@ export default function DesktopMessenger() {
       connectHeaders :{userId: "ksswy"},
       onConnect: () =>{
         console.log("Connect to webSocket");
-/*
-        client.subscribe("/topic/public",(message) => {
-          const receiveMessage = JSON.parse(message.body);
-          setMessages((prev) => [...prev, receiveMessage])
-        })
-          */
+
         client.subscribe("/queue/room/1234",(message) => {
           console.log("message reiceve");
           const receiveMessage = JSON.parse(message.body);
@@ -98,26 +93,6 @@ export default function DesktopMessenger() {
   },[]);
 
 
-  const handleSendMessage = () => {
-    console.log("send btn click");
-    if(!inputText.trim() || !stompClient) return;
-    const newMsg = {
-      sender: "ksswy",
-      value : inputText.trim(),
-      date : new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}),
-      type : "1",
-      roomId : "1234",
-      chatId: uuidv4()
-    };
-
-    stompClient.publish({
-      destination :"/app/private-message",
-      body:JSON.stringify(newMsg)
-
-    })
-
-    setInputText("");//초기화
-  }
 
   const handleMenuUserClick = () => {
     setSelectMenu("userList");
@@ -181,46 +156,9 @@ export default function DesktopMessenger() {
 
       {/* 채팅창 */}
       <div className="chat-window">
-        {/* 채팅 헤더 */}
-        <div className="chat-header">
-          <div className="chat-avatar">D</div>
-          <div className="chat-header-title">
-            {selectedChat ? selectedChat.name : "No Chat Selected"}
-          </div>
-        </div>
-
-        {/* 메시지 목록 */}
-        <div className="chat-messages">
-          {messages.map((msg, idx) => {
-            const isMe = msg.sender === "ksswy";
-            return (
-              <div
-                key={idx}
-                className={`message ${isMe ? "message-right" : "message-left"}`}
-              >
-                <div className="message-content">
-                  <div>{msg.value}</div>
-                  <div className="message-time">{msg.date}</div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* 메시지 입력 */}
-        <div className="chat-input">
-          <input
-            type="text"
-            placeholder="Write a message..."
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") handleSendMessage();
-            }}
-          />
-          <button onClick={handleSendMessage}>Send</button>
-        </div>
+        <ChatRoom/>
       </div>
+
     </div>
   );
 }

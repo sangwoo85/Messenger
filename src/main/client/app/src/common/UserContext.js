@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import api from "../common/ChatAxios"; // Axios 설정 파일
+import api from "./ChatAxios"; // Axios 설정 파일
 
 // 1️⃣ Context 생성
 const UserContext = createContext();
