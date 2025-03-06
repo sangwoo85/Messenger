@@ -108,3 +108,36 @@
     margin-left: auto;
   }
   
+  /* 본인이 보낸 메시지 */
+  .message-right .message-content {
+    background-color: #dcf8c6;
+    border-color: #cce5b8;
+  }
+  
+  /* === 메시지 입력창 === */
+  .chat-input {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .chat-input button {
+    margin-left: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    background-color: #5cb85c;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+  }

@@ -5,6 +5,7 @@ import "./Messenger.css";
 import UserLayout from "../user/UserLayout";
 import ChatRoom from "../chat/ChatRoom";
 import { useUser } from "../common/UserContext";
+import { StompProvider } from "../stomp/stompContext";
 
 
 
@@ -46,27 +47,16 @@ var chatListData = [
   },
 ];
 
-const initialMessages = [
-  {
-    sender: "Designers",
-    message: `To check out what a native Windows Telegram app looks like, you can try Unigram. It is possible that the best design solutions will be implemented into Unigram. To check the functionality of Telegram desktop apps, please refer to https://desktop.telegram.org`,
-    date: "9:54 PM",
-  },
-  {
-    sender: "You",
-    message: "What do you think?",
-    date: "9:54 PM",
-  },
-];
 
 export default function DesktopMessenger() {
   const [selectedChat, setSelectedChat] = useState(null); // 초기 선택 없음
   const [messages, setMessages] = useState([]); // 초기 메시지 없음
   const [stompClient, setStompClient] = useState(null);
   const [selectMenu, setSelectMenu] = useState(null);
-
+  const [selectedChatId ,selectChatUser] = useState(null);
 
   console.log(useUser());
+  console.log(selectedChatId);
   const server_url  = window.location.protocol +"//"+ window.location.hostname+":8090"
   useEffect(()=>{
     const socket = new SockJS( server_url+"/ws")
@@ -108,7 +98,7 @@ export default function DesktopMessenger() {
     setSelectedChat(chat);
     // 서버에서 해당 채팅에 대한 메시지를 불러오는 로직 필요
     // 예시: setMessages(fetchMessagesForChat(chat));
-    setMessages(initialMessages); // 임시로 초기 메시지 설정
+    //setMessages(initialMessages); // 임시로 초기 메시지 설정
   };
 
   return (
@@ -126,7 +116,7 @@ export default function DesktopMessenger() {
         <input className="search-box" placeholder="Search" />
 
         {(selectMenu  ===  "userList"  || !selectMenu)&& (
-          <UserLayout/>
+          <UserLayout selectChatUser={selectChatUser}/>
         )}
         {selectMenu === "chatList" && (
           <>
@@ -156,7 +146,9 @@ export default function DesktopMessenger() {
 
       {/* 채팅창 */}
       <div className="chat-window">
-        <ChatRoom/>
+        <StompProvider>
+          <ChatRoom chatRoomtId={selectedChatId}/>
+        </StompProvider>
       </div>
 
     </div>

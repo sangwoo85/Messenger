@@ -8,7 +8,7 @@ import chatBasixAxios from '../common/ChatAxios';
  * 
  */
 
-export default function UserList(){
+export default function UserList({selectChatUser}){
     const [openGroups, setOpenGroups] = useState({});
     const [usersData, setUsersData] = useState([]);
     const [myProfile, setMyProfile] = useState(null);
@@ -47,7 +47,7 @@ export default function UserList(){
     return(
         <div className="chat-list">
             {myProfile && (
-                <div className="user-item">
+                <div className="user-item" onDoubleClick={() => selectChatUser(myProfile.userId)}>
                     <div className="user-profile">
                         {myProfile.profileImg ? (
                         <img src={myProfile.profileImg} alt={myProfile.name} className="user-avatar" />
@@ -75,7 +75,7 @@ export default function UserList(){
                 {openGroups[group._id] && (
                     <ul className="user-items">
                     {group.memberList.map((user) => (
-                        <li key={user.userId} className="user-item">
+                        <li key={user.userId} className="user-item" onDoubleClick={() => selectChatUser(user.userId)}>
                         <div className="user-profile">
                             {user.profileImg ? (
                             <img src={user.profileImg} alt={user.name} className="user-avatar" />

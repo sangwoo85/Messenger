@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import stompClient from "./StompClient";
 
-const StompContext = createContext();
+const StompContext = createContext(null);
 
 export function StompProvider({ children }) {
   const [connected, setConnected] = useState(false);
@@ -59,6 +59,11 @@ export function StompProvider({ children }) {
 }
 
 // ✅ Context 사용을 쉽게 하기 위한 커스텀 훅
+
 export function useStomp() {
-  return useContext(StompContext);
+  const context = useContext(StompContext);
+  if (!context) {
+    throw new Error("❌ useStomp must be used within a StompProvider");
+  }
+  return context;
 }
