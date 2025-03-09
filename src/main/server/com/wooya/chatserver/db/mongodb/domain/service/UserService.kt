@@ -1,5 +1,6 @@
 package com.wooya.chatserver.db.mongodb.domain.service
 
+import com.wooya.chatserver.common.util.HttpUtil
 import com.wooya.chatserver.db.mongodb.domain.user.model.DeplGroupList
 import com.wooya.chatserver.db.mongodb.domain.user.model.User
 import com.wooya.chatserver.db.mongodb.domain.user.repo.UserRepository
@@ -22,7 +23,9 @@ class UserService(private val userRepository: UserRepository) {
         return userRepository.findByUserId(userId)
     }
 
+
     fun groupByDeplList():List<DeplGroupList>{
-        return userRepository.groupByDeplList();
+        val loginId = HttpUtil.getLoginId()
+        return userRepository.groupByDeplList(loginId);
     }
 }

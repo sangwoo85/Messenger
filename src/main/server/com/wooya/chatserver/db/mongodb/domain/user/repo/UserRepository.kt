@@ -15,7 +15,13 @@ interface UserRepository :MongoRepository<User,String> {
         "{ '\$unwind': '\$deptInfo' }",
         "{ '\$lookup': { 'from': 'Position', 'localField': 'position', 'foreignField': 'code', 'as': 'positionInfo' } }",
         "{ '\$unwind': '\$positionInfo' }",
-        "{ '\$group': { '_id': '\$deptInfo.code', 'deptName':{ '\$first':'\$deptInfo.name'},  'memberList': { '\$push': { 'userId': '\$userId', 'name': '\$name', 'position': '\$positionInfo.name', 'comment': '\$comment', 'profileImg': '\$profileImg' } } } }"
+        "{ '\$group': { '_id': '\$deptInfo.code', 'deptName':{ '\$first':'\$deptInfo.name'},  " +
+                "'memberList': { " +
+                "   '\$push': { 'userId': '\$userId', 'name': '\$name', 'position': '\$positionInfo.name', 'comment': '\$comment', 'profileImg': '\$profileImg' " +
+                                "} " +
+                                "} " +
+                    "} " +
+          "}"
     ])
     fun groupByDeplList():List<DeplGroupList>
 }

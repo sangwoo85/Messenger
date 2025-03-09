@@ -7,4 +7,8 @@ data class ChatMessage(
     val type : String ="",  // 메시지 타입
     val chatId : String ="", // 메시지 보낼때 사용되는 임시 ID
     val roomId : String = "", // 보내는 채팅방의 고유 ID
+
+
+
+
 )

@@ -10,4 +10,5 @@ interface MessageRepository :MongoRepository<MessageInfo,String> {
     fun save(messageInfo: MessageInfo) :MessageInfo
 
     fun findByRoomId(roomId : String ) :List<MessageInfo>
+
 }

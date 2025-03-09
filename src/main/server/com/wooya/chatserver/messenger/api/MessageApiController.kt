@@ -32,7 +32,4 @@ class MessageApiController(private val messageTemplate: SimpMessagingTemplate) {
         messageTemplate.convertAndSend("/queue/room/$roomId",message)
     }
 
-
-
-
 }
