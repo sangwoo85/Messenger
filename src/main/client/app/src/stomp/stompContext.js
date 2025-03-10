@@ -26,6 +26,7 @@ export function StompProvider({ children }) {
   }, []);
 
   // ✅ 채팅방 구독 (chatRoomId 기준)
+  
   const subscribeToRoom = (chatRoomId, callback) => {
     if (!connected) return;
 

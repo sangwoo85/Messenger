@@ -26,6 +26,6 @@ class UserService(private val userRepository: UserRepository) {
 
     fun groupByDeplList():List<DeplGroupList>{
         val loginId = HttpUtil.getLoginId()
-        return userRepository.groupByDeplList(loginId);
+        return userRepository.groupByDeplList();
     }
 }

@@ -42,9 +42,10 @@ class MessengerServiceImpl(private val roomRepository: ChatRoomRepository,
         val servletRequest =  (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes?)!!.request
 
         val loginId = HttpUtil.getLoginId();
-        val chatRoom =  roomRepository.findByParticipants(loginId)
+        /*
+        val chatRoom =  roomRepository.findByChatRoomId(loginId)
 
-        val messageList = messageRepository.findByRoomId(chatRoom.roomId);
+        val messageList = messageRepository.findByRoomId(chatRoom.r);
 
        val messageDtoList =  messageList.map { messageModel ->  ChatMessage(messageModel.value
                                                         , messageModel.sender
@@ -52,9 +53,9 @@ class MessengerServiceImpl(private val roomRepository: ChatRoomRepository,
                                                         , messageModel.type
                                                         , messageModel.messageId
                                                         )   }
-
+*/
         LOGGER.info("END [ {} ]",chatRoom.toString())
-        return messageDtoList;
+        return null;
     }
 
 }
