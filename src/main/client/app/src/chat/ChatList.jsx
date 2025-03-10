@@ -57,7 +57,7 @@ var chatListData = [
 
 export default function ChatList(){
 
-    setInputText("");//초기화
+    //setInputText("");//초기화
 
     const [chatListData1, setChatListData] = useState([]);
     const [inputText, setInputText] = useState("");

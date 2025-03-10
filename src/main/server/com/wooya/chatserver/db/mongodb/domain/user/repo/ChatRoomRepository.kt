@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface ChatRoomRepository : MongoRepository<ChatRoom, Long> {
 
-    fun findByChatRoomId(chatRoomId: String): ChatRoom?
+    fun findByRoomId(chatRoomId: String): ChatRoom?
 
     fun findByParticipants(participants: List<String>): ChatRoom
 

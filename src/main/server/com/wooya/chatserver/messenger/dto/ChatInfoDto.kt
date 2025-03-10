@@ -7,7 +7,7 @@ package com.wooya.chatserver.messenger.dto
  * */
 data class ChatInfoDto(
 
-    val userGrouList : List<UserGroupDto>,
+    val userGrouList: List<UserGroupDto>,
 
-    val chatRoomList : List<ChatRoomDto>
+    val chatRoomList: List<ChatRoomDto>
 )

@@ -4,48 +4,9 @@ import SockJS from "sockjs-client";
 import "./Messenger.css";
 import UserLayout from "../user/UserLayout";
 import ChatRoom from "../chat/ChatRoom";
+import ChatList from "../chat/ChatList";
 import { useUser } from "../common/UserContext";
 import { StompProvider } from "../stomp/stompContext";
-
-
-
-var chatListData = [
-  {
-    name: "Saved 222",
-    lastMessage: "Used for gradient stops in elevation",
-    time: "9:54 PM",
-  },
-  {
-    name: "Designers",
-    lastMessage: "You: 🎙️ Poll",
-    time: "4:27 PM",
-  },
-  {
-    name: "Cody Fisher",
-    lastMessage: "I'll be there in 2 mins",
-    time: "10:12 AM",
-  },
-  {
-    name: "Albert Flores",
-    lastMessage: "aww",
-    time: "Tue",
-  },
-  {
-    name: "Bessie Cooper",
-    lastMessage: "Haha that's terrifying 😂",
-    time: "Tue",
-  },
-  {
-    name: "Ronald Richards",
-    lastMessage: "Sure, let's do it!",
-    time: "Mon",
-  },
-  {
-    name: "Ralph Edwards",
-    lastMessage: "Any updates?",
-    time: "Mon",
-  },
-];
 
 
 export default function DesktopMessenger() {
@@ -112,38 +73,14 @@ export default function DesktopMessenger() {
           <div className={`sidebar-menu ${selectMenu  ===  "chatList"?"active":""}`}
           onClick={handleMenuChatClick}>대화방 목록</div>
         </div>
-
         <input className="search-box" placeholder="Search" />
-
         {(selectMenu  ===  "userList"  || !selectMenu)&& (
           <UserLayout selectChatUser={selectChatUser}/>
         )}
         {selectMenu === "chatList" && (
-          <>
-            <div className="chat-list">
-              {chatListData.map((chat, idx) => (
-                  <div
-                    key={idx}
-                    className="chat-item"
-                    onClick={() => handleSelectChat(chat)}
-                  >
-                    <div className="chat-avatar">
-                      {chat.name.charAt(0)}
-                    </div>
-                    <div className="chat-info">
-                      <div className="chat-name">{chat.name}</div>
-                      <div className="chat-last-message">{chat.lastMessage}</div>
-                    </div>
-                    <div className="chat-time">{chat.time}</div>
-                  </div>
-                ))}
-            </div>
-          </>
+            <ChatList/>
         )}
-        
-        
       </div>
-
       {/* 채팅창 */}
       <div className="chat-window">
         <StompProvider>

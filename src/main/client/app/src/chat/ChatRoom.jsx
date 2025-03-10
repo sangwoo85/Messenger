@@ -26,7 +26,7 @@ export default function ChatRoom({chatRoomtId}) {
         return () => {
           unsubscribeFromRoom({chatRoomtId}); // ✅ 채팅방 변경 시 구독 해제
         };
-      }, [connected, "1234"]);
+      }, [connected, {chatRoomtId}]);
 
     const handleSendMessage = () => {
         console.log("send btn click");
@@ -40,11 +40,15 @@ export default function ChatRoom({chatRoomtId}) {
           chatId: uuidv4()
         };
         stompClient.publish({
-          destination :"/app/private-message",
+          destination :"/app/private-message/{chatRoomtId}",
           body:JSON.stringify(newMsg)
         })
 
-        messages({"sender":"ksswy","value":"test","date":"2025-03-06 15:00:00","type":"1","roomId":"1234","chatId":"1234"});
+        const tmpMsg = {"sender":"ksswy","value":inputText.trim(),"date":"2025-03-06 15:00:00","type":"1","roomId":"1234","chatId":"1234"};
+
+        //messages({"sender":"ksswy","value":"test","date":"2025-03-06 15:00:00","type":"1","roomId":"1234","chatId":"1234"});
+
+        setMessages((prevMessages) => [...prevMessages, tmpMsg]);
 
         setInputText("");//초기화
     }

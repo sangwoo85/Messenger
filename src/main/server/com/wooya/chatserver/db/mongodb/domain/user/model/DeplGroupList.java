@@ -1,16 +1,35 @@
 package com.wooya.chatserver.db.mongodb.domain.user.model;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
-@Getter
-@Setter
 public class DeplGroupList {
 
-    private String _id;
-    private String deptName;
-    private List<User> memberList;
+    public String _id;
+    public String deptName;
+    public List<User> memberList;
 
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public List<User> getMemberList() {
+        return memberList;
+    }
+
+    public void setMemberList(List<User> memberList) {
+        this.memberList = memberList;
+    }
 }

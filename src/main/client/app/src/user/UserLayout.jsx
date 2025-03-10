@@ -29,7 +29,7 @@ export default function UserList({selectChatUser}){
         .then((response) => {
             console.log(response);
             const data = response.data;
-            setUsersData(response.data);
+            setUsersData(data.userGrouList);
             setMyProfile({comment: "나의 코멘트1",
                           dept: null,
                           id: null,
@@ -65,26 +65,26 @@ export default function UserList({selectChatUser}){
                 </div>
             )}
             {usersData.map((group) => (
-                <div key={group._id} className="user-group">
-                <div className="group-header" onClick={() => toggleGroup(group._id)}>
+                <div key={group.deptCode} className="user-group">
+                <div className="group-header" onClick={() => toggleGroup(group.deptCode)}>
                     <span className="group-name">{group.deptName}</span>
-                    <span className={`arrow ${openGroups[group._id] ? "open" : ""}`}>
+                    <span className={`arrow ${openGroups[group.deptCode] ? "open" : ""}`}>
                     ▼
                     </span>
                 </div>
-                {openGroups[group._id] && (
+                {openGroups[group.deptCode] && (
                     <ul className="user-items">
                     {group.memberList.map((user) => (
                         <li key={user.userId} className="user-item" onDoubleClick={() => selectChatUser(user.userId)}>
                         <div className="user-profile">
                             {user.profileImg ? (
-                            <img src={user.profileImg} alt={user.name} className="user-avatar" />
+                            <img src={user.profileImg} alt={user.userName} className="user-avatar" />
                             ) : (
                             <span className="default-icon">👤</span>
                             )}
                             <div className="user-info">
                             <div className="user-name-position">
-                                <span className="user-name">{user.name}</span>
+                                <span className="user-name">{user.userName}</span>
                                 <span className="user-position">{user.position}</span>
                             </div>
                             <div className="user-comment">{user.comment}</div>

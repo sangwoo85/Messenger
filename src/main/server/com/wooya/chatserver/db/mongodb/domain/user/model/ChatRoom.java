@@ -15,13 +15,13 @@ import java.util.List;
 public class ChatRoom {
 
     //RoomId
-    String roomId;
+    public String roomId;
     //마지막 전송한 ID .. ID 아이디 기준으로  뭘할까?local Storage와 비교해서 이후  메시지만 가져 오던지 해야함....
-    String lastMessageId;
+    public String lastMessageId;
     //참가자들 ID
-    List<String> participants;
+    public List<String> participants;
     //생성 날짜
-    Date createDate;
+    public Date createDate;
 }
 
 /**
